@@ -6,14 +6,15 @@ import javax.swing.JOptionPane;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pikachu extends Creature
+public class Lapras extends Creature
 {
-    public Pikachu ( World w )
+    public Lapras ( World w )
     {
         //Indentation issues
-        super(700, false, "Electric" );
+        super(900, false, "Water" );
         getImage().scale(150, 100);
         w.addObject( getHealthBar(), 100, 25 );
+        getHealthBar().getImage().setTransparency(0);
     }
     
     
@@ -28,17 +29,17 @@ public class Pikachu extends Creature
         if ( getHealthBar().getCurrent() <=0 )
         {
             //Indentation issues
-            getWorld().showText("Pikachu has fainted...", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+            getWorld().showText("Lapras has fainted...", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
             Greenfoot.delay(30); 
             
-            if(playerWorld.getNewOneCreature(1).getHealthBar().getCurrent() > 0)
+            if(playerWorld.getNewTwoCreature(0).getHealthBar().getCurrent() > 0)
             {
                 switchCreature(0);
                 playerWorld.setTurnNumber(false);
                 getWorld().showText("",getWorld().getWidth()/2,getWorld().getHeight()/2+26);
                 getWorld().removeObject(this);
             }
-            else if( playerWorld.getNewOneCreature(2).getHealthBar().getCurrent() > 0)
+            else if( playerWorld.getNewTwoCreature(2).getHealthBar().getCurrent() > 0)
             {
                  switchCreature(1);
                 playerWorld.setTurnNumber(false);
@@ -66,15 +67,27 @@ public class Pikachu extends Creature
         }
         else
         {
-           if( enemyType.equalsIgnoreCase("Rock") )
+           if( enemyType.equalsIgnoreCase("Fire") )
            {
-                enemy.getHealthBar().add(0);
-                getWorld().showText("It has no effect", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
-                Greenfoot.delay(30);
+               enemy.getHealthBar().add(-100*2);
+               getWorld().showText("It's super effective", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+               Greenfoot.delay(30);
+           }
+           else if( enemyType.equalsIgnoreCase("Rock") )
+           {
+               enemy.getHealthBar().add(-100*2);
+               getWorld().showText("It's super effective", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+               Greenfoot.delay(30);
+           }
+           else if( enemyType.equalsIgnoreCase("Grass") )
+           {
+               enemy.getHealthBar().add(-100/2);
+               getWorld().showText("It's not very effective", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+               Greenfoot.delay(30);
            }
            else
            {
-                enemy.getHealthBar().add(-70);
+               enemy.getHealthBar().add(-100);
            }
         }
         world.setTurnNumber(true);
@@ -110,14 +123,12 @@ public class Pikachu extends Creature
          Creature switchCreature;
          if( idx == 0 )
          {
-             switchCreature = world.getNewTwoCreature(1);
+             switchCreature = world.getNewTwoCreature(0);
          }
          else
          {
              switchCreature = world.getNewTwoCreature(2);
-         }
-         
-         if( switchCreature.getHealthBar().getCurrent() <= 0 )
+         }    if( switchCreature.getHealthBar().getCurrent() <= 0 )
          {
              JOptionPane.showMessageDialog( null, "This creature has fainted! Please select a different creature." );
          }
@@ -133,7 +144,7 @@ public class Pikachu extends Creature
              
              if( idx == 0 )
              {
-                 world.changePlayerTwo("Lapras");
+                 world.changePlayerTwo("Pikachu");
              }
              else
              {

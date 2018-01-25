@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.*;
 
 /**
@@ -85,10 +85,12 @@ public class HealthBar extends Actor
         updateBar();
     }
 
-    /**
-     * Act - do whatever the HealthBar wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+   /**
+    * act animates my health bar by changing the current health and updating my image
+    * 
+    * @param There are no parameters
+    * @return Nothing is returned
+    */
     public void act()
     {
         //Need to add code
@@ -114,9 +116,8 @@ public class HealthBar extends Actor
         updateBar();
     }
 
-    /**
-     * updateBar updates the image of the health bar when the current health
-     * changes values
+     /**
+     * updateBar updates the image of the health bar
      * 
      * @param There are no parameters
      * @return Nothing is returned

@@ -29,6 +29,12 @@ public class TextBox extends Actor
       display();
     }
     
+    /*
+     * it will show the color of the image
+     * 
+     * @param there are no parameters
+     * @return there is nothing returned
+     */
     private void display()
     {
       if( border == true )
@@ -40,11 +46,23 @@ public class TextBox extends Actor
        setImage( img );
     }
     
+    /*
+     * returning the text for the string
+     * 
+     * @param there are no parameters
+     * @return returning text
+     */
     public String getText()
     {
         return text;
     }
     
+    /**
+     * it will set the text, fontsize, foreground and background in an image
+     *
+     *@param there are parameters
+     *@return there is nothing to be returned
+     */
     public void setText( String message )
     {
         text = message;

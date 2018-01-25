@@ -6,14 +6,14 @@ import javax.swing.JOptionPane;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Pikachu extends Creature
+public class Pidgeot extends Creature
 {
-    public Pikachu ( World w )
+    public Pidgeot ( World w )
     {
-        //Indentation issues
-        super(700, false, "Electric" );
+        super(800, false, "Flying" );
         getImage().scale(150, 100);
         w.addObject( getHealthBar(), 100, 25 );
+        getHealthBar().getImage().setTransparency(0);
     }
     
     
@@ -27,18 +27,17 @@ public class Pikachu extends Creature
         CreatureWorld playerWorld = (CreatureWorld)getWorld();
         if ( getHealthBar().getCurrent() <=0 )
         {
-            //Indentation issues
-            getWorld().showText("Pikachu has fainted...", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+            getWorld().showText("Pidgeot has fainted...", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
             Greenfoot.delay(30); 
             
-            if(playerWorld.getNewOneCreature(1).getHealthBar().getCurrent() > 0)
+            if(playerWorld.getNewTwoCreature(0).getHealthBar().getCurrent() > 0)
             {
                 switchCreature(0);
                 playerWorld.setTurnNumber(false);
                 getWorld().showText("",getWorld().getWidth()/2,getWorld().getHeight()/2+26);
                 getWorld().removeObject(this);
             }
-            else if( playerWorld.getNewOneCreature(2).getHealthBar().getCurrent() > 0)
+            else if( playerWorld.getNewTwoCreature(1).getHealthBar().getCurrent() > 0)
             {
                  switchCreature(1);
                 playerWorld.setTurnNumber(false);
@@ -67,20 +66,26 @@ public class Pikachu extends Creature
         else
         {
            if( enemyType.equalsIgnoreCase("Rock") )
+            {
+                enemy.getHealthBar().add(-55/2);
+                getWorld().showText("It's not very effective", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+                Greenfoot.delay(30);
+           }
+           else if( enemyType.equalsIgnoreCase("Grass") )
            {
-                enemy.getHealthBar().add(0);
-                getWorld().showText("It has no effect", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
+               enemy.getHealthBar().add(-55*2);
+               getWorld().showText("It's super effective", getWorld().getWidth()/2,getWorld().getHeight()/2+26);
                 Greenfoot.delay(30);
            }
            else
            {
-                enemy.getHealthBar().add(-70);
+                enemy.getHealthBar().add(-55);
            }
         }
         world.setTurnNumber(true);
     }
     
-     /*
+    /*
      * sets the location of where the attack is going to hit 
      * 
      * @param there are no parameters
@@ -110,11 +115,11 @@ public class Pikachu extends Creature
          Creature switchCreature;
          if( idx == 0 )
          {
-             switchCreature = world.getNewTwoCreature(1);
+             switchCreature = world.getNewTwoCreature(0);
          }
          else
          {
-             switchCreature = world.getNewTwoCreature(2);
+             switchCreature = world.getNewTwoCreature(1);
          }
          
          if( switchCreature.getHealthBar().getCurrent() <= 0 )
@@ -133,18 +138,18 @@ public class Pikachu extends Creature
              
              if( idx == 0 )
              {
-                 world.changePlayerTwo("Lapras");
+                 world.changePlayerTwo("Pikachu");
              }
              else
              {
-                 world.changePlayerTwo("Pidgeot");
+                 world.changePlayerTwo("Lapras");
              }
              switchCreature.switchedIn();
              world.setTurnNumber(true);
          }
     }
     
-     /*
+    /*
      * switches the image of the creature
      * 
      * @param there are no parameters

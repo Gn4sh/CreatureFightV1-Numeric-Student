@@ -21,10 +21,11 @@ public class Creature extends Actor
      */
     public Creature()
     {
-      healthNumber = 500;
-      healthNumber = 0;
-      creatureBar = new HealthBar ( healthNumber, healthNumber, 10 );
-      playerOneCreature = true;
+        //Indentation issues
+        healthNumber = 500;
+        healthNumber = 0;
+        creatureBar = new HealthBar ( healthNumber, healthNumber, 10 );
+        playerOneCreature = true;
     }
 
     /**
@@ -36,22 +37,37 @@ public class Creature extends Actor
      */
     public Creature( int health, boolean isPlayerOne, String creatureType )
     {
-      healthNumber = health;
-      playerOneCreature = true; 
-      creatureBar = new HealthBar ( healthNumber, healthNumber, 10 );
-      type = creatureType;
+        //Indentation issues
+        healthNumber = health;
+        //this should be playerOneCreature = isPlayerOne;
+        playerOneCreature = isPlayerOne; 
+        creatureBar = new HealthBar ( healthNumber, healthNumber, 10 );
+        type = creatureType;
     }
     
+    /*
+     * getting the healthBar of the creature
+     * 
+     * @param there are no parameters
+     * @return returning creatureBar
+     */
     protected HealthBar getHealthBar()
     {
-      return creatureBar;  
+        return creatureBar;  
     }
    
     public boolean getWhetherPlayerOne()
     {
-       return playerOneCreature; 
+        //Indentation issues
+        return playerOneCreature; 
     }
     
+    /*
+     * returns the class object identifying the type of field represented by the object
+     * 
+     *@param there are no paramaters 
+     *@return the type of font 
+     */
     public String getType()
     {
         return type;
@@ -64,6 +80,16 @@ public class Creature extends Actor
      * @return Nothing is returned
      */
     public void attack( int idx )
+    {
+        //empty method that will get overriden in subclasses
+    }
+    
+    public void switchCreature( int idx )
+    {
+        //empty method that will get overriden in subclasses
+    }
+    
+    public void switchedIn()
     {
         //empty method that will get overriden in subclasses
     }
